@@ -1,0 +1,39 @@
+name: VDS punten Android APK bouwen
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  android:
+    name: Bouw VDS punten offline APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Code ophalen
+        uses: actions/checkout@v4
+      - name: Java installeren
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Android SDK installeren
+        uses: android-actions/setup-android@v4
+      - name: Android onderdelen installeren
+        run: |
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+      - name: Gradle installeren
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Installeerbare APK bouwen
+        run: gradle --no-daemon --stacktrace :app:assembleDebug
+      - name: APK beschikbaar maken
+        uses: actions/upload-artifact@v4
+        with:
+          name: VDS-punten-Android-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14

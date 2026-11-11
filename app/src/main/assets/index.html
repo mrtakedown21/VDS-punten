@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d12">
+  <title>VDS punten</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><span class="brand-mark">VDS</span><div><strong>VDS punten</strong><small>FOTOCONTROLE</small></div></div>
+      <p class="nav-heading">OVERZICHT</p>
+      <nav id="main-nav"></nav>
+      <div class="sidebar-title"><span>LOCATIES</span><button class="icon-btn" id="nav-add" aria-label="Nieuwe map toevoegen" title="Nieuwe map">＋</button></div>
+      <div id="folder-nav" class="folder-nav"></div>
+      <div class="sidebar-bottom"><div class="offline"><span class="status-dot"></span> 100% OFFLINE</div><small>Foto's blijven lokaal op deze tablet.</small></div>
+    </aside>
+    <div class="right-column">
+      <header class="topbar">
+        <div class="topbar-start"><button id="mobile-menu" class="icon-btn mobile-menu" aria-label="Menu openen">☰</button><div><span class="eyebrow">WINKELCONTROLE</span><h1 id="page-title">Dashboard</h1></div></div>
+        <div class="topbar-actions"><span class="countdown-chip" id="header-countdown"></span><button class="btn btn-red" id="top-add-photo">＋ Foto maken</button></div>
+      </header>
+      <main id="content" tabindex="-1"></main>
+    </div>
+  </div>
+  <div id="modal-layer"></div>
+  <input type="file" accept="image/*" capture="environment" id="fallback-camera" hidden>
+  <script src="app.js"></script>
+</body>
+</html>
